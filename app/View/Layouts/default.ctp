@@ -28,7 +28,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-		echo $this->Html->css('app');
+		//echo $this->Html->css('app');
+		echo $this->Html->css('styles');
 		//echo $this->Html->script(array('jquery-1.11.3.min','app'));
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -59,7 +60,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     </div>
   </div>
   <?php
-echo $this->Html->script(array('jquery-1.11.3.min','app'));
+		echo $this->Html->script(array('jquery-1.11.3.min','app'));
 		echo $this->fetch('script');
 
    ?>
