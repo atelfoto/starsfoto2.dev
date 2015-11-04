@@ -53,9 +53,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
       <div class="site-content" id="container">
         <div class="container">
         <?php echo $this->fetch('content'); ?>
-
         </div>
+        <div id='container_footer'></div>
       </div>
+      <footer id="footer"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit sed similique labore natus. Sequi aut ratione repudiandae velit eius, laboriosam possimus dolorum expedita commodi reprehenderit suscipit. Eius dolores laborum officiis.</p></footer>
       <div class="site-cache" id="site-cache"></div>
     </div>
   </div>

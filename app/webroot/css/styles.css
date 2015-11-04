@@ -1,5 +1,26 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,700,900|Roboto+Condensed|Roboto+Slab);
 html, body {
+  height: 100%;
+}
+
+#container {
+  clear: both;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin-bottom: -50px;
+}
+#container #container_footer {
+  height: 50px;
+}
+
+#footer {
+  clear: both;
+  position: relative;
+  height: 50px;
+}
+
+html, body {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   line-height: 1.4;
@@ -53,6 +74,19 @@ a {
 }
 .menu a:hover {
   color: #c6ff00;
+}
+
+footer {
+  background: rgba(0, 0, 0, 0.64);
+  bottom: 0px;
+  margin-bottom: 0;
+  text-align: center;
+}
+footer p {
+  padding: 5px;
+  font-size: .8em;
+  font-weight: 400;
+  font-style: italic;
 }
 
 /*------------------------------------*\

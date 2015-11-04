@@ -1,5 +1,7 @@
 @import "compass";
 @import "variables";
+@import "compass/layout.scss";
+@include sticky-footer(50px, "#container", "#container_footer", "#footer");
 html,body{
 	font-family: $typo-titre;
 	font-size: 16px;
@@ -52,7 +54,19 @@ a{
 		color: #c6ff00;
 	}
 }
+	footer{
+		background:rgba(0, 0, 0, 0.64);
+		bottom:0px;
+		margin-bottom: 0;
+		text-align:center;
+		p{padding: 5px;
 
+			font-size: .8em;
+			font-weight: 400;
+			font-style: italic;
+
+		}
+	}
 /*------------------------------------*\
     $RESPONSIVE
 \*------------------------------------*/
