@@ -47,23 +47,27 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <a href="#">item 03</a>
         <a href="#">item 04</a>
         <a href="#">item 05</a>
+        <a href="#">item 06</a>
+        <a href="#">item 07</a>
+        <a href="#">item 08</a>
+        <a href="#">item 09</a>
       </nav>
     </header>
     <div class="site-pusher">
-      <div class="site-content" id="container">
-        <div class="container">
+      <div class="site-content" >
+        <div class="container" id="container">
         <?php echo $this->fetch('content'); ?>
-        </div>
         <div id='container_footer'></div>
+        </div>
+         <footer id="footer">Copyright &copy; 2014-<?php echo date('Y'); ?> <a href=""><?php echo env('HTTP_HOST'); ?></p></footer>
       </div>
-      <footer id="footer"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit sed similique labore natus. Sequi aut ratione repudiandae velit eius, laboriosam possimus dolorum expedita commodi reprehenderit suscipit. Eius dolores laborum officiis.</p></footer>
+
       <div class="site-cache" id="site-cache"></div>
     </div>
   </div>
   <?php
 		echo $this->Html->script(array('jquery-1.11.3.min','app'));
 		echo $this->fetch('script');
-
    ?>
     <!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script> -->
