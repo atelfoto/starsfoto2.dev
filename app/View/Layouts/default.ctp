@@ -59,7 +59,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <?php echo $this->fetch('content'); ?>
         <div id='container_footer'></div>
         </div>
-         <footer id="footer">Copyright &copy; 2014-<?php echo date('Y'); ?> <a href=""><?php echo env('HTTP_HOST'); ?></p></footer>
+         <footer id="footer">Copyright &copy; 2014-<?php echo date('Y'); ?> <a href=""><?php echo env('HTTP_HOST'); ?> <?php echo $cakeVersion; ?> </p></footer>
       </div>
 
       <div class="site-cache" id="site-cache"></div>
@@ -69,7 +69,5 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->script(array('jquery-1.11.3.min','app'));
 		echo $this->fetch('script');
    ?>
-    <!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script> -->
 </body>
 </html>
