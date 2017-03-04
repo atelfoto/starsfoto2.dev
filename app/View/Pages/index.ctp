@@ -10,7 +10,7 @@
             <li><a href="#"></a></li>
           </ul>
           <h1>Lorem ipsum dolor sit amet.</h1>
-           <?php $cakeDescription = __d('cake_dev', 'Studio Chardon');
+           <?php $cakeDescription = __d('cake_dev', 'Starsfoto');
       $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
           <h2><?php echo $cakeVersion; ?></h2>
