@@ -1,32 +1,6 @@
 
- <h1>Lorem ipsum dolor sit amet.</h1>
-          <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, quisquam.</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores odio repudiandae voluptates tempora distinctio perspiciatis impedit autem. Rem vero, earum expedita, vitae iure maiores itaque quas quae et accusantium eius.titi</p>
-          <ul>
-            <li><a href="#">toto</a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-          </ul>
-          <h1>Lorem ipsum dolor sit amet.</h1>
-           <?php $cakeDescription = __d('cake_dev', 'Starsfoto');
-      $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
-?>
-          <h2><?php echo $cakeVersion; ?></h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores odio repudiandae voluptates tempora distinctio perspiciatis impedit autem. Rem vero, earum expedita, vitae iure maiores itaque quas quae et accusantium eius.</p>
-          <h1>Lorem ipsum dolor sit amet.</h1>
-          <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, quisquam.</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores odio repudiandae voluptates tempora distinctio perspiciatis impedit autem. Rem vero, earum expedita, vitae iure maiores itaque quas quae et accusantium eius.</p>
-          <h1>Lorem ipsum dolor sit amet.</h1>
-          <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, quisquam.</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores odio repudiandae voluptates tempora distinctio perspiciatis impedit autem. Rem vero, earum expedita, iure maiores itaque quas quae et accusantium eius.</p>
-          <h1>Lorem ipsum dolor sit amet.</h1>
-          <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, quisquam.</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores odio repudiandae voluptates tempora distinctio perspiciatis impedit autem. Rem vero, earum expedita, vitae iure maiores itaque quas quae et accusantium eius.</p>
-          <h1>Lorem ipsum dolor sit amet.</h1>
-          <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, quisquam.</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores odio repudiandae voluptates tempora distinctio perspiciatis impedit autem. Rem vero, earudita, vitae iure maiores itaque quas quae et accusantium eius.</p>
-          <h1>Lorem ipsum dolor sit amet.</h1>
-          <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, quisquam.</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores odio repudiandae voluptates tempora distinctio perspiciatis impedit autem. Rem vero, earudita, vitae iure maiores itaque quas quae et accusantium eius.<b>Fin de page</b></p>
+ <h1> <?php echo strtoupper("Starsfoto");?> <br />
+ 	<span><?php echo strtoupper("antonio rivas casado photographer marbella ") ?></span>
+ </h1>
+
+         <p>Fotógrafo de bodas, comuniones, moda y publicidad. Reportajes de arquitectura e interiorismo. Fotografía artística decorativa. Books profesionales para modelos. Fotografía publicitaria comercial diseño industrial y producto. Realizamos trabajos de eventos y fiestas. Servicios de retoque y restauraciónes de fotos antiguas. Profesionales de la imagen en Marbella</p>
