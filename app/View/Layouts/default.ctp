@@ -56,6 +56,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <div class="site-pusher">
       <div class="site-content" >
         <div class="container" id="container">
+        <?php echo $this->Flash->render(); ?>
         <?php echo $this->fetch('content'); ?>
         <div id='container_footer'></div>
         </div>

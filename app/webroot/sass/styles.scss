@@ -1,4 +1,6 @@
 @import "compass";
+@import "public/bootstrap-custom";
+
 @import "variables";
 @import "compass/layout.scss";
 @include sticky-footer(50px, "#container", "#container_footer", "#footer");
