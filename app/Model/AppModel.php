@@ -30,4 +30,16 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+//	public $recursive = -1;
+//	public $actsAs = array('Containable');
+
+	public function isJpg($check, $limit){
+		$field = key($check);
+		$filename = $check[$field]['name'];
+		if(empty($filename)){
+			return true;
+		}
+		$info = pathinfo($filename);
+		return strtolower($info['extension']) == 'jpg';
+	}
 }

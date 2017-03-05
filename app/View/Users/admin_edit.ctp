@@ -53,33 +53,6 @@
 							<div class="form-group">
 								<?php echo $this->Form->input('role', array('class' => 'form-control','options' => array("admin", "member")));?>
 							</div>
-							<!-- <div class="form-group">
-								<?php // echo $this->Form->input('group_id', array('class' => 'form-control','placeholder' => __('Group Id')));?>
-							</div> -->
-							<!-- 	<div class="form-group">
-								<?php //  echo $this->Form->input('firstname', array('class' => 'form-control',
-							 //  'placeholder' => __('Firstname')));?>
-							</div>
-							<div class="form-group">
-								<?php //  echo $this->Form->input('lastname', array('class' => 'form-control',
-							 //  'placeholder' => __('Lastname')));?>
-							</div>
-							<div class="form-group">
-								<?php //  echo $this->Form->input('active', array('class' => 'form-control',
-							 //  'placeholder' => __('Active')));?>
-							</div>
-							<div class="form-group">
-								<?php  // echo $this->Form->input('avatar', array('class' => 'form-control',
-							 //  'placeholder' => __('Avatar')));?>
-							</div>
-							<div class="form-group">
-								<?php echo $this->Form->input('token', array('class' => 'form-control',
-							 'placeholder' => __('Token')));?>
-							</div>
-							<div class="form-group">
-								<?php //  echo $this->Form->input('lastlogin', array('class' => 'form-control',
-							 //  'placeholder' => __('Lastlogin')));?>
-							</div> -->
 					  	</div>
 					</div>
 				</div>
@@ -94,9 +67,6 @@
 		</div>
 	</div><!-- end containers -->
 </div>
-
-<?php  echo $this->Html->script(array('tinymce/tinymce.min'),array('inline'=>false)); ?>
-
 <?php echo  $this->Html->scriptStart(array('inline'=>false)); ?>
 //pour les tabs
 $('#myTab a').click(function (e) {

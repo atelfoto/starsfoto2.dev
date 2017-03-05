@@ -6,10 +6,10 @@
 			<div class="panel panel-default box-home">
 				<div class="media">
 					<div class="media-left" style="padding: 20px;">
-						<?php echo  $this->Html->image("logo_thumb.jpg", array("class"=>"img-circle")); ?>
 					</div>
 					<div class="media-body" style="padding-top: 30px;">
-					<a href="/" style="text-decoration-style: none;"><h2 class="media-heading" style="color:#E98500 ;font-family:Tangerinebold;font-size:3.5em ;">Les Maraichers de la Coudraie</h2></a>
+					<a href="/" style="text-decoration-style: none;">
+						<h2 class="media-heading" style="color:#E98500 ;font-family:Tangerinebold;font-size:3.5em ;">Stars Foto</h2></a>
 					</div>
 				</div>
 				<div class="panel-body">

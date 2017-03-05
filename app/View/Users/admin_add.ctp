@@ -17,16 +17,15 @@
 	)); ?>
 	<div class="box-header with-border">
 		<h3 class="box-title"><i class="icon-user"></i>&nbsp;<?php echo __('Add User'); ?></h3>
-		<div class="box-tools pull-right" style="margin-bottom:10px;">
+		<div class="box-tools pull-right">
 			<?php echo $this->Form->button('<i class="icon-ok " style="color:#fff;">&nbsp;</i>'.__('publish'),
-									array('class' => 'btn btn-success btn-sm btn-fill')); ?>
+									array('class' => 'btn btn-success btn-sm')); ?>
 			<?php echo $this->html->link('<i class="icon-cancel-circled" style="color:#f00;">&nbsp;</i>'.__('closed'),
 										array('controller'=>'users','action'=>'index'),
-									array('class' => 'btn btn-default btn-sm btn-fill','escape'=>false)); ?>
+									array('class' => 'btn btn-default btn-sm','escape'=>false)); ?>
 			<?php   echo $this->Form->input('active', array('label' =>false,"div"=>array('class'=>'pull-left'),'after'=>false));?>
 		</div>
 	</div>
-	<div class="clearfix"></div>
 	<div class="box-body box-body-offerings">
 		<?php echo $this->Form->input('username', array('class' => 'form-control',
 		'placeholder' => __('Username'),
@@ -69,8 +68,8 @@
   $(function() {
     $('#UserActive').bootstrapToggle({
     size:'small',
-    onstyle:'primary ',
-    offstyle:'danger ',
+    onstyle:'primary',
+    offstyle:'danger',
     });
   });
 <?= $this->Html->scriptEnd(); ?>

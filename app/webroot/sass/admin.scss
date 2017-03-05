@@ -1,3 +1,58 @@
+@import "compass";
 @import "admin/bootstrap-custom";
-@import "admin/light-bootstrap-dashboard";
+//@import "admin/light-bootstrap-dashboard";
+
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
+
+
+@import "fontello/fontello";
+@import "fontello/animation";
+
 @import "admin/bootstrap-toggle/bootstrap-toggle";
+@import "admin/fileinput";
+
+
+//@import "admin/admin-LTE/variables";
+//@import "admin/admin-LTE/core";
+@import "admin/admin-LTE/mixins";
+@import "admin/admin-LTE/miscellaneous";
+
+@import "admin/admin-LTE/components/header";
+@import "admin/admin-LTE/components/sidebar";
+@import "admin/admin-LTE/components/sidebar-mini";
+@import "admin/admin-LTE/components/control-sidebar";
+@import "admin/admin-LTE/components/dropdown";
+@import "admin/admin-LTE/components/forms";
+@import "admin/admin-LTE/components/progress-bars";
+@import "admin/admin-LTE/components/small-box";
+@import "admin/admin-LTE/components/boxes";
+@import "admin/admin-LTE/components/info-box";
+@import "admin/admin-LTE/components/buttons";
+@import "admin/admin-LTE/components/callout";
+@import "admin/admin-LTE/components/alerts";
+@import "admin/admin-LTE/components/navs";
+@import "admin/admin-LTE/components/products";
+@import "admin/admin-LTE/components/table";
+@import "admin/admin-LTE/components/labels";
+//@import "admin/admin-LTE/components/direct-chat";
+@import "admin/admin-LTE/components/users-list";
+//@import "admin/admin-LTE/components/carousel";
+@import "admin/admin-LTE/components/modal";
+@import "admin/admin-LTE/components/social-widgets";
+
+@import "admin/admin-LTE/pages/mailbox";
+@import "admin/admin-LTE/pages/lockscreen";
+@import "admin/admin-LTE/pages/login_and_register";
+@import "admin/admin-LTE/pages/404_500_errors";
+@import "admin/admin-LTE/pages/invoice";
+//@import "admin/admin-LTE//pages/profile";
+// //Plugins
+// //--------
+@import "admin/admin-LTE/plugins/bootstrap-social";
+@import "admin/admin-LTE/plugins/fullcalendar";
+@import "admin/admin-LTE/plugins/chosen";
+
+
+@import "admin/admin-LTE/print";
+@import "admin/admin-LTE/skins/skin-blue";
