@@ -6,10 +6,13 @@
 /lib/Cake/Console/Templates/skel/tmp/
 /app/webroot/.sass-cache/**/*
 /plugins
+/app/Plugin/
+/app/Vendor/
 /vendors
 /build
 /dist
 /tags
+/**/*.*sass-cache/
 *.mo
 
 # IDE and editor specific files #

@@ -12,7 +12,7 @@ module.exports=function(grunt){
 				files:{
 					//'app/webroot/js/app.min.js': ['node_modules/jquery/dist/jquery.min.js','node_modules/bootstrap-sass/assets/javascripts/bootstrap.js','src/public/*.js'],
 					'app/webroot/js/app.min.js': ['src/jquery.min.js','src/bootstrap.js','src/public/*.js'],
-					'app/webroot/js/admin.min.js': ['node_modules/jquery/dist/jquery.min.js','bower_components/bootstrap-toggle/js/bootstrap-toggle.js','src/admin/*.js'],
+					'app/webroot/js/admin.min.js': ['node_modules/jquery/dist/jquery.min.js','src/admin/*.js'],
 				}
 			}
 		},
@@ -21,7 +21,7 @@ module.exports=function(grunt){
 				options: {
 					//style: 'compressed',
 					compass:true,
-					 sourcemap: 'none',
+					// sourcemap: 'none',
 					style: 'expanded'
 				},
 				files: [{ // C'est ici que l'on définit le dossier que l'on souhaite importer
