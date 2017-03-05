@@ -53,7 +53,7 @@ App::uses('CakeResponse', 'Network');
  * @property      TimeHelper $Time
  * @property      ViewBlock $Blocks
  */
-class View extends Object {
+class View extends CakeObject {
 
 /**
  * Helpers collection
@@ -564,7 +564,7 @@ class View extends Object {
 
 		$type = $response->mapType($response->type());
 		if (Configure::read('debug') > 0 && $type === 'html') {
-			echo "<!-- Cached Render Time: " . round(microtime(true) - $timeStart, 4) . "s -->";
+			echo "<!-- Cached Render Time: " . round(microtime(true) - (int)$timeStart, 4) . "s -->";
 		}
 		$out = ob_get_clean();
 
@@ -1012,9 +1012,6 @@ class View extends Object {
 			$name = $this->viewPath . DS . $subDir . Inflector::underscore($name);
 		} elseif (strpos($name, DS) !== false) {
 			if ($name[0] === DS || $name[1] === ':') {
-				if (is_file($name)) {
-					return $name;
-				}
 				$name = trim($name, DS);
 			} elseif ($name[0] === '.') {
 				$name = substr($name, 3);

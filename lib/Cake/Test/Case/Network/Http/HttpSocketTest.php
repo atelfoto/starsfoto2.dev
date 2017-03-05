@@ -314,23 +314,6 @@ class HttpSocketTest extends CakeTestCase {
 		$response = $this->Socket->request(true);
 		$this->assertFalse($response);
 
-		$context = array(
-			'ssl' => array(
-				'verify_peer' => true,
-				'allow_self_signed' => false,
-				'verify_depth' => 5,
-				'SNI_enabled' => true,
-				'CN_match' => 'www.cakephp.org',
-				'cafile' => CAKE . 'Config' . DS . 'cacert.pem'
-			)
-		);
-
-		if (version_compare(PHP_VERSION, '5.6.0', '>=')) {
-			$context['ssl']['peer_name'] = 'www.cakephp.org';
-		} else {
-			$context['ssl']['SNI_server_name'] = 'www.cakephp.org';
-		}
-
 		$tests = array(
 			array(
 				'request' => 'http://www.cakephp.org/?foo=bar',
@@ -341,7 +324,10 @@ class HttpSocketTest extends CakeTestCase {
 						'protocol' => 'tcp',
 						'port' => 80,
 						'timeout' => 30,
-						'context' => $context,
+						'ssl_verify_peer' => true,
+						'ssl_allow_self_signed' => false,
+						'ssl_verify_depth' => 5,
+						'ssl_verify_host' => true,
 						'request' => array(
 							'uri' => array(
 								'scheme' => 'http',
@@ -1793,7 +1779,7 @@ class HttpSocketTest extends CakeTestCase {
 	}
 
 /**
- * This tests asserts HttpSocket::reset() resets a HttpSocket instance to it's initial state (before Object::__construct
+ * This tests asserts HttpSocket::reset() resets a HttpSocket instance to it's initial state (before CakeObject::__construct
  * got executed)
  *
  * @return void
@@ -1817,7 +1803,7 @@ class HttpSocketTest extends CakeTestCase {
 
 /**
  * This tests asserts HttpSocket::reset(false) resets certain HttpSocket properties to their initial state (before
- * Object::__construct got executed).
+ * CakeObject::__construct got executed).
  *
  * @return void
  */
@@ -1844,27 +1830,6 @@ class HttpSocketTest extends CakeTestCase {
 	}
 
 /**
- * test configuring the context from the flat keys.
- *
- * @return void
- */
-	public function testConfigContext() {
-		$this->Socket->expects($this->any())
-			->method('read')->will($this->returnValue(false));
-
-		$this->Socket->reset();
-		$this->Socket->request('http://example.com');
-		$this->assertTrue($this->Socket->config['context']['ssl']['verify_peer']);
-		$this->assertFalse($this->Socket->config['context']['ssl']['allow_self_signed']);
-		$this->assertEquals(5, $this->Socket->config['context']['ssl']['verify_depth']);
-		$this->assertEquals('example.com', $this->Socket->config['context']['ssl']['CN_match']);
-		$this->assertArrayNotHasKey('ssl_verify_peer', $this->Socket->config);
-		$this->assertArrayNotHasKey('ssl_allow_self_signed', $this->Socket->config);
-		$this->assertArrayNotHasKey('ssl_verify_host', $this->Socket->config);
-		$this->assertArrayNotHasKey('ssl_verify_depth', $this->Socket->config);
-	}
-
-/**
  * Test that requests fail when peer verification fails.
  *
  * @return void
@@ -1878,7 +1843,6 @@ class HttpSocketTest extends CakeTestCase {
 		} catch (SocketException $e) {
 			$message = $e->getMessage();
 			$this->skipIf(strpos($message, 'Invalid HTTP') !== false, 'Invalid HTTP Response received, skipping.');
-			$this->assertContains('Peer certificate CN', $message);
 			$this->assertContains('Failed to enable crypto', $message);
 		}
 	}

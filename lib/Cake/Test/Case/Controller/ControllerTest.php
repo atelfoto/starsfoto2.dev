@@ -284,7 +284,7 @@ class TestController extends ControllerTestAppController {
  *
  * @package       Cake.Test.Case.Controller
  */
-class TestComponent extends Object {
+class TestComponent extends CakeObject {
 
 /**
  * beforeRedirect method
@@ -993,6 +993,7 @@ class ControllerTest extends CakeTestCase {
 		$Controller->constructClasses();
 
 		$this->assertFalse(isset($Controller->Session));
+		$this->assertFalse(isset($Controller->Flash));
 	}
 
 /**
