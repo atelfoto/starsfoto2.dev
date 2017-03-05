@@ -3,6 +3,7 @@
 /app/Config/database.php
 /app/tmp
 /node_modules/
+/bower_components/
 /lib/Cake/Console/Templates/skel/tmp/
 /app/webroot/.sass-cache/**/*
 /plugins
