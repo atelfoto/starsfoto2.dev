@@ -20,7 +20,7 @@ App::uses('View', 'View');
 App::uses('TextHelper', 'View/Helper');
 
 /**
- * TextHelperTestObject
+ * Class TextHelperTestObject
  *
  * @package       Cake.Test.Case.View.Helper
  */

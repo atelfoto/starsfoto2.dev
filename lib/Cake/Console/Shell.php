@@ -28,14 +28,7 @@ App::uses('File', 'Utility');
  *
  * @package       Cake.Console
  */
-class Shell extends CakeObject {
-
-/**
- * Default error code
- *
- * @var int
- */
-	const CODE_ERROR = 1;
+class Shell extends Object {
 
 /**
  * Output constant making verbose shells.
@@ -180,13 +173,6 @@ class Shell extends CakeObject {
  * @var int
  */
 	protected $_lastWritten = 0;
-
-/**
- * Contains helpers which have been previously instantiated
- *
- * @var array
- */
-	protected $_helpers = array();
 
 /**
  *  Constructs this Shell instance.
@@ -369,7 +355,7 @@ class Shell extends CakeObject {
 	}
 
 /**
- * Dispatch a command to another Shell. Similar to CakeObject::requestAction()
+ * Dispatch a command to another Shell. Similar to Object::requestAction()
  * but intended for running shells from other shells.
  *
  * ### Usage:
@@ -587,8 +573,7 @@ class Shell extends CakeObject {
 		$result = $this->stdin->read();
 
 		if ($result === false) {
-			$this->_stop(self::CODE_ERROR);
-			return self::CODE_ERROR;
+			return $this->_stop(1);
 		}
 		$result = trim($result);
 
@@ -660,7 +645,8 @@ class Shell extends CakeObject {
  *
  * @param array|string $message The message to output.
  * @param int $newlines Number of newlines to append.
- * @param int $size The number of bytes to overwrite. Defaults to the length of the last message output.
+ * @param int $size The number of bytes to overwrite. Defaults to the
+ *    length of the last message output.
  * @return int|bool Returns the number of bytes returned from writing to stdout.
  */
 	public function overwrite($message, $newlines = 1, $size = null) {
@@ -734,8 +720,7 @@ class Shell extends CakeObject {
 		if (!empty($message)) {
 			$this->err($message);
 		}
-		$this->_stop(self::CODE_ERROR);
-		return self::CODE_ERROR;
+		return $this->_stop(1);
 	}
 
 /**
@@ -773,8 +758,7 @@ class Shell extends CakeObject {
 
 			if (strtolower($key) === 'q') {
 				$this->out(__d('cake_console', '<error>Quitting</error>.'), 2);
-				$this->_stop();
-				return true;
+				return $this->_stop();
 			} elseif (strtolower($key) !== 'y') {
 				$this->out(__d('cake_console', 'Skip `%s`', $path), 2);
 				return false;
@@ -793,28 +777,6 @@ class Shell extends CakeObject {
 
 		$this->err(__d('cake_console', '<error>Could not write to `%s`</error>.', $path), 2);
 		return false;
-	}
-
-/**
- * Load given shell helper class
- *
- * @param string $name Name of the helper class. Supports plugin syntax.
- * @return BaseShellHelper Instance of helper class
- * @throws RuntimeException If invalid class name is provided
- */
-	public function helper($name) {
-		if (isset($this->_helpers[$name])) {
-			return $this->_helpers[$name];
-		}
-		list($plugin, $helperClassName) = pluginSplit($name, true);
-		$helperClassName = Inflector::camelize($name) . "ShellHelper";
-		App::uses($helperClassName, $plugin . "Console/Helper");
-		if (!class_exists($helperClassName)) {
-			throw new RuntimeException("Class " . $helperClassName . " not found");
-		}
-		$helper = new $helperClassName($this->stdout);
-		$this->_helpers[$name] = $helper;
-		return $helper;
 	}
 
 /**
@@ -974,48 +936,15 @@ class Shell extends CakeObject {
 			CakeLog::drop('stderr');
 			return;
 		}
-		if (!$this->_loggerIsConfigured("stdout")) {
-			$this->_configureStdOutLogger();
-		}
-		if (!$this->_loggerIsConfigured("stderr")) {
-			$this->_configureStdErrLogger();
-		}
-	}
-
-/**
- * Configure the stdout logger
- * 
- * @return void
- */
-	protected function _configureStdOutLogger() {
 		CakeLog::config('stdout', array(
 			'engine' => 'Console',
 			'types' => array('notice', 'info'),
 			'stream' => $this->stdout,
 		));
-	}
-
-/**
- * Configure the stderr logger
- * 
- * @return void
- */
-	protected function _configureStdErrLogger() {
 		CakeLog::config('stderr', array(
 			'engine' => 'Console',
 			'types' => array('emergency', 'alert', 'critical', 'error', 'warning', 'debug'),
 			'stream' => $this->stderr,
 		));
-	}
-
-/**
- * Checks if the given logger is configured
- * 
- * @param string $logger The name of the logger to check 
- * @return bool
- */
-	protected function _loggerIsConfigured($logger) {
-		$configured = CakeLog::configured();
-		return in_array($logger, $configured);
 	}
 }

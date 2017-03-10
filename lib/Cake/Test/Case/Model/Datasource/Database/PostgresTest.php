@@ -132,8 +132,7 @@ class PostgresTestModel extends Model {
 			'comments' => array('type' => 'text', 'null' => '1', 'default' => '', 'length' => ''),
 			'last_login' => array('type' => 'datetime', 'null' => '1', 'default' => '', 'length' => ''),
 			'created' => array('type' => 'date', 'null' => '1', 'default' => '', 'length' => ''),
-			'updated' => array('type' => 'datetime', 'null' => '1', 'default' => '', 'length' => null),
-			'some_uuid' => array('type' => 'uuid', 'null' => '1', 'default' => null),
+			'updated' => array('type' => 'datetime', 'null' => '1', 'default' => '', 'length' => null)
 		);
 	}
 
@@ -258,8 +257,7 @@ class PostgresTest extends CakeTestCase {
 			'"PostgresTestModel"."comments" AS "PostgresTestModel__comments"',
 			'"PostgresTestModel"."last_login" AS "PostgresTestModel__last_login"',
 			'"PostgresTestModel"."created" AS "PostgresTestModel__created"',
-			'"PostgresTestModel"."updated" AS "PostgresTestModel__updated"',
-			'"PostgresTestModel"."some_uuid" AS "PostgresTestModel__some_uuid"'
+			'"PostgresTestModel"."updated" AS "PostgresTestModel__updated"'
 		);
 
 		$result = $this->Dbo->fields($this->model);
@@ -302,7 +300,6 @@ class PostgresTest extends CakeTestCase {
 		$this->assertEquals('decimal', $this->Dbo2->column('numeric'));
 		$this->assertEquals('float', $this->Dbo2->column('float'));
 		$this->assertEquals('float', $this->Dbo2->column('double precision'));
-		$this->assertEquals('uuid', $this->Dbo2->column('uuid'));
 
 		$result = $this->Dbo2->column('bigint');
 		$expected = 'biginteger';
@@ -339,8 +336,6 @@ class PostgresTest extends CakeTestCase {
 		$this->assertEquals("'TRUE'", $this->Dbo->value('1', 'boolean'));
 		$this->assertEquals("NULL", $this->Dbo->value(null, 'boolean'));
 		$this->assertEquals("NULL", $this->Dbo->value(array()));
-		$this->assertEquals("'550e8400-e29b-41d4-a716-446655440000'", $this->Dbo->value('550e8400-e29b-41d4-a716-446655440000', 'uuid'));
-		$this->assertEquals("NULL", $this->Dbo->value(null, 'uuid'));
 	}
 
 /**
@@ -1155,7 +1150,7 @@ class PostgresTest extends CakeTestCase {
 		$data = $db->describe('test_uuid_describe');
 
 		$expected = array(
-			'type' => 'uuid',
+			'type' => 'string',
 			'null' => false,
 			'default' => null,
 			'length' => 36,
@@ -1209,13 +1204,4 @@ class PostgresTest extends CakeTestCase {
 		$this->assertEquals($expected, $result);
 	}
 
-/**
- * Test build column working for new uuid types
- */
-	public function testBuildColumnUuid() {
-		$column = array('name' => 'col1', 'type' => 'uuid');
-		$result = $this->Dbo2->buildColumn($column);
-
-		$this->assertEquals('"col1" uuid', $result);
-	}
 }

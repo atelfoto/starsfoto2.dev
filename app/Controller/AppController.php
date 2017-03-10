@@ -62,23 +62,25 @@ class AppController extends Controller {
 		parent::beforeFilter();
 		$this->layout = 'default';
 		$this->Auth->loginAction = array('controller'=>'users','action'=>'login','admin'=>false);
-		$this->Cookie->httpOnly = true;
-		if (!$this->Auth->loggedIn() && $this->Cookie->read('remember')) {
-		$cookie = $this->Cookie->read('remember');
+		//$this->Cookie->httpOnly = true;
+		//if (!$this->Auth->loggedIn() && $this->Cookie->read('remember')) {
+		//$cookie = $this->Cookie->read('remember');
 	//	$cookie= $this->Cookie->write('remember');
 		//$this->loadModel('User'); // If the User model is not loaded already
-		$user = $this->User->find('first', array(
-		'conditions' => array(
-		'User.username' => $cookie['username'],
-		'User.password' => $cookie['password']
-		)
-		));
+		//$user = $this->User->find('first', array(
+		//'conditions' => array(
+		//'User.username' => $cookie['username'],
+		//'User.password' => $cookie['password']
+		//)
+		//));
 
-		}
+		//}
 
 		$this->Auth->authorize = array('Controller');
 		if (!isset($this->request->params['prefix'])){
 			$this->Auth->allow();
+
+
 		}
 		if(isset($this->request->params['prefix']) && $this->request->params['prefix']=='admin'){
 			$this->layout = 'admin';

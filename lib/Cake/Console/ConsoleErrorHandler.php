@@ -49,10 +49,10 @@ class ConsoleErrorHandler {
 /**
  * Handle an exception in the console environment. Prints a message to stderr.
  *
- * @param Exception|ParserError $exception The exception to handle
+ * @param Exception $exception The exception to handle
  * @return void
  */
-	public function handleException($exception) {
+	public function handleException(Exception $exception) {
 		$stderr = static::getStderr();
 		$stderr->write(__d('cake_console', "<error>Error:</error> %s\n%s",
 			$exception->getMessage(),

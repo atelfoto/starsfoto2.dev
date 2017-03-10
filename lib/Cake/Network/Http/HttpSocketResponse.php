@@ -268,28 +268,18 @@ class HttpSocketResponse implements ArrayAccess {
 			return false;
 		}
 
-		preg_match_all("/(.+):(.+)(?:\r\n|\$)/Uis", $header, $matches, PREG_SET_ORDER);
-		$lines = explode("\r\n", $header);
+		preg_match_all("/(.+):(.+)(?:(?<![\t ])\r\n|\$)/Uis", $header, $matches, PREG_SET_ORDER);
 
 		$header = array();
-		foreach ($lines as $line) {
-			if (strlen($line) === 0) {
-				continue;
-			}
-			$continuation = false;
-			$first = substr($line, 0, 1);
-
-			// Multi-line header
-			if ($first === ' ' || $first === "\t") {
-				$value .= preg_replace("/\s+/", ' ', $line);
-				$continuation = true;
-			} elseif (strpos($line, ':') !== false) {
-				list($field, $value) = explode(':', $line, 2);
-				$field = $this->_unescapeToken($field);
-			}
+		foreach ($matches as $match) {
+			list(, $field, $value) = $match;
 
 			$value = trim($value);
-			if (!isset($header[$field]) || $continuation) {
+			$value = preg_replace("/[\t ]\r\n/", "\r\n", $value);
+
+			$field = $this->_unescapeToken($field);
+
+			if (!isset($header[$field])) {
 				$header[$field] = $value;
 			} else {
 				$header[$field] = array_merge((array)$header[$field], (array)$value);
@@ -319,11 +309,7 @@ class HttpSocketResponse implements ArrayAccess {
 				$parts = preg_split('/\;[ \t]*/', $cookie);
 			}
 
-			$nameParts = explode('=', array_shift($parts), 2);
-			if (count($nameParts) < 2) {
-				$nameParts = array('', $nameParts[0]);
-			}
-			list($name, $value) = $nameParts;
+			list($name, $value) = explode('=', array_shift($parts), 2);
 			$cookies[$name] = compact('value');
 
 			foreach ($parts as $part) {

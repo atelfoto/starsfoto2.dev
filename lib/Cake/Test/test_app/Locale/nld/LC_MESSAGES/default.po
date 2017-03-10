@@ -27,6 +27,3 @@ msgstr "balans"
 msgctxt "money"
 msgid "balance"
 msgstr "saldo"
-
-msgid "zoo"
-msgstr "dierentuin"

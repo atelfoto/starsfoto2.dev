@@ -52,10 +52,9 @@ App::uses('CakeEventManager', 'Event');
  * @property      RequestHandlerComponent $RequestHandler
  * @property      SecurityComponent $Security
  * @property      SessionComponent $Session
- * @property      FlashComponent $Flash
  * @link          http://book.cakephp.org/2.0/en/controllers.html
  */
-class Controller extends CakeObject implements CakeEventListener {
+class Controller extends Object implements CakeEventListener {
 
 /**
  * The name of this controller. Controller names are plural, named after the model they manipulate.
@@ -190,7 +189,7 @@ class Controller extends CakeObject implements CakeEventListener {
  * @var array
  * @link http://book.cakephp.org/2.0/en/controllers/components.html
  */
-	public $components = array('Session', 'Flash');
+	public $components = array('Session');
 
 /**
  * The name of the View class this controller sends output to.
@@ -754,7 +753,7 @@ class Controller extends CakeObject implements CakeEventListener {
  *     or an absolute URL
  * @param int|array|null $status HTTP status code (eg: 301). Defaults to 302 when null is passed.
  * @param bool $exit If true, exit() will be called after the redirect
- * @return \Cake\Network\Response|null
+ * @return void
  * @triggers Controller.beforeRedirect $this, array($url, $status, $exit)
  * @link http://book.cakephp.org/2.0/en/controllers.html#Controller::redirect
  */
@@ -770,7 +769,7 @@ class Controller extends CakeObject implements CakeEventListener {
 		$this->getEventManager()->dispatch($event);
 
 		if ($event->isStopped()) {
-			return null;
+			return;
 		}
 		$response = $event->result;
 		extract($this->_parseBeforeRedirect($response, $url, $status, $exit), EXTR_OVERWRITE);
@@ -795,8 +794,6 @@ class Controller extends CakeObject implements CakeEventListener {
 			$this->response->send();
 			$this->_stop();
 		}
-
-		return $this->response;
 	}
 
 /**
@@ -1006,7 +1003,7 @@ class Controller extends CakeObject implements CakeEventListener {
  * @param string $layout Layout you want to use, defaults to 'flash'
  * @return void
  * @link http://book.cakephp.org/2.0/en/controllers.html#Controller::flash
- * @deprecated 3.0.0 Will be removed in 3.0. Use Flash::set() with version 2.7+ or Session::setFlash() prior to 2.7.
+ * @deprecated 3.0.0 Will be removed in 3.0. Use Session::setFlash().
  */
 	public function flash($message, $url, $pause = 1, $layout = 'flash') {
 		$this->autoRender = false;

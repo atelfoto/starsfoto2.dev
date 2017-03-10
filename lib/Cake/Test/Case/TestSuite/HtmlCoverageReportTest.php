@@ -22,7 +22,7 @@ App::uses('HtmlCoverageReport', 'TestSuite/Coverage');
 App::uses('CakeBaseReporter', 'TestSuite/Reporter');
 
 /**
- * HtmlCoverageReportTest
+ * Class HtmlCoverageReportTest
  *
  * @package       Cake.Test.Case.TestSuite
  */

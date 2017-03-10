@@ -19,7 +19,7 @@ App::uses('CakeEvent', 'Event');
 App::uses('CakeResponse', 'Network');
 
 /**
- * AssetDispatcherTest
+ * Class AssetDispatcherTest
  *
  * @package       Cake.Test.Case.Routing.Filter
  */

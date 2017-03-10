@@ -89,18 +89,14 @@ class DatabaseSession implements CakeSessionHandlerInterface {
  */
 	public function read($id) {
 		$row = $this->_model->find('first', array(
-			'conditions' => array($this->_model->alias . '.' . $this->_model->primaryKey => $id)
+			'conditions' => array($this->_model->primaryKey => $id)
 		));
 
-		if (empty($row[$this->_model->alias])) {
-			return '';
+		if (empty($row[$this->_model->alias]['data'])) {
+			return false;
 		}
 
-		if (!is_numeric($row[$this->_model->alias]['data']) && empty($row[$this->_model->alias]['data'])) {
-			return '';
-		}
-
-		return (string)$row[$this->_model->alias]['data'];
+		return $row[$this->_model->alias]['data'];
 	}
 
 /**
@@ -127,9 +123,9 @@ class DatabaseSession implements CakeSessionHandlerInterface {
 			'counterCache' => false
 		);
 		try {
-			return (bool)$this->_model->save($record, $options);
+			return $this->_model->save($record, $options);
 		} catch (PDOException $e) {
-			return (bool)$this->_model->save($record, $options);
+			return $this->_model->save($record, $options);
 		}
 	}
 
@@ -140,7 +136,7 @@ class DatabaseSession implements CakeSessionHandlerInterface {
  * @return bool True for successful delete, false otherwise.
  */
 	public function destroy($id) {
-		return (bool)$this->_model->delete($id);
+		return $this->_model->delete($id);
 	}
 
 /**
@@ -155,8 +151,7 @@ class DatabaseSession implements CakeSessionHandlerInterface {
 		} else {
 			$expires = time() - $expires;
 		}
-		$this->_model->deleteAll(array($this->_model->alias . ".expires <" => $expires), false, false);
-		return true;
+		return $this->_model->deleteAll(array($this->_model->alias . ".expires <" => $expires), false, false);
 	}
 
 }

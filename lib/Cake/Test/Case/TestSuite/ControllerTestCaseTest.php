@@ -65,7 +65,7 @@ if (!class_exists('AppController', false)) {
 if (!class_exists('PostsController')) {
 
 /**
- * PostsController
+ * Class PostsController
  *
  * @package       Cake.Test.Case.TestSuite
  */
@@ -596,6 +596,7 @@ class ControllerTestCaseTest extends CakeTestCase {
  * will always have a fresh reference to those object available
  *
  * @return void
+ * @see https://cakephp.lighthouseapp.com/projects/42648-cakephp/tickets/2705-requesthandler-weird-behavior
  */
 	public function testComponentsSameRequestAndResponse() {
 		$this->Case->generate('TestsApps');

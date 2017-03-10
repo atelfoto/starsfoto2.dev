@@ -43,7 +43,7 @@ class Hash {
  * @link http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::get
  */
 	public static function get(array $data, $path, $default = null) {
-		if (empty($data) || $path === null) {
+		if (empty($data) || $path === '' || $path === null) {
 			return $default;
 		}
 		if (is_string($path) || is_numeric($path)) {
@@ -824,7 +824,7 @@ class Hash {
 	}
 
 /**
- * Sorts an array by any value, determined by a Hash-compatible path
+ * Sorts an array by any value, determined by a Set-compatible path
  *
  * ### Sort directions
  *
@@ -836,23 +836,13 @@ class Hash {
  * - `regular` For regular sorting (don't change types)
  * - `numeric` Compare values numerically
  * - `string` Compare values as strings
- * - `locale` Compare items as strings, based on the current locale
  * - `natural` Compare items as strings using "natural ordering" in a human friendly way.
  *   Will sort foo10 below foo2 as an example. Requires PHP 5.4 or greater or it will fallback to 'regular'
  *
- * To do case insensitive sorting, pass the type as an array as follows:
- *
- * ```
- * array('type' => 'regular', 'ignoreCase' => true)
- * ```
- *
- * When using the array form, `type` defaults to 'regular'. The `ignoreCase` option
- * defaults to `false`.
- *
  * @param array $data An array of data to sort
- * @param string $path A Hash-compatible path to the array value
+ * @param string $path A Set-compatible path to the array value
  * @param string $dir See directions above. Defaults to 'asc'.
- * @param array|string $type See direction types above. Defaults to 'regular'.
+ * @param string $type See direction types above. Defaults to 'regular'.
  * @return array Sorted array of data
  * @link http://book.cakephp.org/2.0/en/core-utility-libraries/hash.html#Hash::sort
  */
@@ -879,21 +869,10 @@ class Hash {
 		$values = static::extract($result, '{n}.value');
 
 		$dir = strtolower($dir);
-		$ignoreCase = false;
-
-		// $type can be overloaded for case insensitive sort
-		if (is_array($type)) {
-			$type += array('ignoreCase' => false, 'type' => 'regular');
-			$ignoreCase = $type['ignoreCase'];
-			$type = $type['type'];
-		} else {
-			$type = strtolower($type);
-		}
-
+		$type = strtolower($type);
 		if ($type === 'natural' && version_compare(PHP_VERSION, '5.4.0', '<')) {
 			$type = 'regular';
 		}
-
 		if ($dir === 'asc') {
 			$dir = SORT_ASC;
 		} else {
@@ -905,17 +884,10 @@ class Hash {
 			$type = SORT_STRING;
 		} elseif ($type === 'natural') {
 			$type = SORT_NATURAL;
-		} elseif ($type === 'locale') {
-			$type = SORT_LOCALE_STRING;
 		} else {
 			$type = SORT_REGULAR;
 		}
-
-		if ($ignoreCase) {
-			$values = array_map('mb_strtolower', $values);
-		}
-		array_multisort($values, $dir, $type, $keys, $dir);
-
+		array_multisort($values, $dir, $type, $keys, $dir, $type);
 		$sorted = array();
 		$keys = array_unique($keys);
 

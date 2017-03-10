@@ -24,7 +24,7 @@ App::uses('Inflector', 'Utility');
  *
  * @package       Cake.View
  */
-class Helper extends CakeObject {
+class Helper extends Object {
 
 /**
  * Settings for this helper.
@@ -546,7 +546,7 @@ class Helper extends CakeObject {
  *
  * @param string $message Message to be displayed
  * @param string $okCode Code to be executed after user chose 'OK'
- * @param string $cancelCode Code to be executed after user chose 'Cancel', also executed when okCode doesn't return
+ * @param string $cancelCode Code to be executed after user chose 'Cancel'
  * @param array $options Array of options
  * @return string onclick JS code
  */

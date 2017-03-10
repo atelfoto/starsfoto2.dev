@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dff2053d9e96359659682a1e011bdfd5",
-    "content-hash": "275155c385b3f74df0523003cd4ca514",
+    "hash": "055245b57bc98ad27b8e7232eddcd1d1",
+    "content-hash": "25bcfccb52c652203694951c8c2999da",
     "packages": [
         {
             "name": "cakephp/cakephp",
-            "version": "2.9.6",
+            "version": "2.7.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "03e7fa0710b37f44bd1d90c4ecc8bf4d4bdded6d"
+                "reference": "40a0e642c001c215eac16fc16ffb77dd83ed6109"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/03e7fa0710b37f44bd1d90c4ecc8bf4d4bdded6d",
-                "reference": "03e7fa0710b37f44bd1d90c4ecc8bf4d4bdded6d",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/40a0e642c001c215eac16fc16ffb77dd83ed6109",
+                "reference": "40a0e642c001c215eac16fc16ffb77dd83ed6109",
                 "shasum": ""
             },
             "require": {
@@ -27,6 +27,7 @@
             },
             "require-dev": {
                 "cakephp/cakephp-codesniffer": "^1.0.0",
+                "cakephp/debug_kit": "^2.2.0",
                 "phpunit/phpunit": "3.7.*"
             },
             "bin": [
@@ -48,7 +49,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-03-01 03:27:17"
+            "time": "2016-03-14 02:57:55"
         },
         {
             "name": "cakephp/localized",

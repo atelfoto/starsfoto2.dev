@@ -97,7 +97,7 @@ class SqlserverTestDb extends Sqlserver {
 /**
  * describe method
  *
- * @param Model $model
+ * @param object $model
  * @return void
  */
 	public function describe($model) {

@@ -207,8 +207,8 @@ class Router {
 /**
  * Set the default route class to use or return the current one
  *
- * @param string $routeClass The route class to set as default.
- * @return string|null The default route class.
+ * @param string $routeClass to set as default
+ * @return mixed void|string
  * @throws RouterException
  */
 	public static function defaultRouteClass($routeClass = null) {
@@ -523,7 +523,6 @@ class Router {
  * - 'id' - The regular expression fragment to use when matching IDs. By default, matches
  *    integer values and UUIDs.
  * - 'prefix' - URL prefix to use for the generated routes. Defaults to '/'.
- * - 'connectOptions' – Custom options for connecting the routes.
  *
  * @param string|array $controller A controller name or array of controller names (i.e. "Posts" or "ListItems")
  * @param array $options Options to use when generating REST routes
@@ -665,7 +664,7 @@ class Router {
  * created later in the request.
  *
  * Nested requests will create a stack of requests. You can remove requests using
- * Router::popRequest(). This is done automatically when using CakeObject::requestAction().
+ * Router::popRequest(). This is done automatically when using Object::requestAction().
  *
  * Will accept either a CakeRequest object or an array of arrays. Support for
  * accepting arrays may be removed in the future.

@@ -125,8 +125,7 @@ class FixtureTask extends BakeTask {
 				return $this->all();
 			}
 			$model = $this->_modelName($this->args[0]);
-			$importOptions = $this->importOptions($model);
-			$this->bake($model, false, $importOptions);
+			$this->bake($model);
 		}
 	}
 
@@ -178,29 +177,24 @@ class FixtureTask extends BakeTask {
  */
 	public function importOptions($modelName) {
 		$options = array();
-		$plugin = '';
-		if (isset($this->params['plugin'])) {
-			$plugin = $this->params['plugin'] . '.';
-		}
 
 		if (!empty($this->params['schema'])) {
-			$options['schema'] = $plugin . $modelName;
-		} elseif ($this->interactive) {
+			$options['schema'] = $modelName;
+		} else {
 			$doSchema = $this->in(__d('cake_console', 'Would you like to import schema for this fixture?'), array('y', 'n'), 'n');
 			if ($doSchema === 'y') {
 				$options['schema'] = $modelName;
 			}
 		}
-
 		if (!empty($this->params['records'])) {
-			$options['fromTable'] = true;
-		} elseif ($this->interactive) {
+			$doRecords = 'y';
+		} else {
 			$doRecords = $this->in(__d('cake_console', 'Would you like to use record importing for this fixture?'), array('y', 'n'), 'n');
-			if ($doRecords === 'y') {
-				$options['records'] = true;
-			}
 		}
-		if (!isset($options['records']) && $this->interactive) {
+		if ($doRecords === 'y') {
+			$options['records'] = true;
+		}
+		if ($doRecords === 'n') {
 			$prompt = __d('cake_console', "Would you like to build this fixture with data from %s's table?", $modelName);
 			$fromTable = $this->in($prompt, array('y', 'n'), 'n');
 			if (strtolower($fromTable) === 'y') {

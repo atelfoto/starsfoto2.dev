@@ -152,35 +152,15 @@ class SecurityTest extends CakeTestCase {
 	}
 
 /**
- * Test that blowfish doesn't return '' when the salt is ''
- *
- * @return void
- */
-	public function testHashBlowfishEmptySalt() {
-		$test = Security::hash('password', 'blowfish');
-		$this->skipIf(strpos($test, '$2a$') === false, 'Blowfish hashes are incorrect.');
-
-		$stored = '';
-		$hash = Security::hash('anything', 'blowfish', $stored);
-		$this->assertNotEquals($stored, $hash);
-
-		$hash = Security::hash('anything', 'blowfish', false);
-		$this->assertNotEquals($stored, $hash);
-
-		$hash = Security::hash('anything', 'blowfish', null);
-		$this->assertNotEquals($stored, $hash);
-	}
-
-/**
  * Test that hash() works with blowfish.
  *
  * @return void
  */
 	public function testHashBlowfish() {
+		Security::setCost(10);
 		$test = Security::hash('password', 'blowfish');
 		$this->skipIf(strpos($test, '$2a$') === false, 'Blowfish hashes are incorrect.');
 
-		Security::setCost(10);
 		$_hashType = Security::$hashType;
 
 		$key = 'someKey';
@@ -328,7 +308,6 @@ class SecurityTest extends CakeTestCase {
  * @return void
  */
 	public function testEncryptDecrypt() {
-		$this->skipIf(!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
 		$txt = 'The quick brown fox';
 		$key = 'This key is longer than 32 bytes long.';
 		$result = Security::encrypt($txt, $key);
@@ -343,7 +322,6 @@ class SecurityTest extends CakeTestCase {
  * @return void
  */
 	public function testDecryptKeyFailure() {
-		$this->skipIf(!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
 		$txt = 'The quick brown fox';
 		$key = 'This key is longer than 32 bytes long.';
 		Security::encrypt($txt, $key);
@@ -358,7 +336,6 @@ class SecurityTest extends CakeTestCase {
  * @return void
  */
 	public function testDecryptHmacFailure() {
-		$this->skipIf(!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
 		$txt = 'The quick brown fox';
 		$key = 'This key is quite long and works well.';
 		$salt = 'this is a delicious salt!';
@@ -375,7 +352,6 @@ class SecurityTest extends CakeTestCase {
  * @return void
  */
 	public function testDecryptHmacSaltFailure() {
-		$this->skipIf(!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
 		$txt = 'The quick brown fox';
 		$key = 'This key is quite long and works well.';
 		$salt = 'this is a delicious salt!';
@@ -404,7 +380,6 @@ class SecurityTest extends CakeTestCase {
  * @return void
  */
 	public function testEncryptDecryptFalseyData() {
-		$this->skipIf(!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
 		$key = 'This is a key that is long enough to be ok.';
 
 		$result = Security::encrypt('', $key);
@@ -449,16 +424,4 @@ class SecurityTest extends CakeTestCase {
 		Security::decrypt($txt, $key);
 	}
 
-/**
- * Test the random method.
- *
- * @return void
- */
-	public function testRandomBytes() {
-		$value = Security::randomBytes(16);
-		$this->assertSame(16, strlen($value));
-
-		$value = Security::randomBytes(64);
-		$this->assertSame(64, strlen($value));
-	}
 }

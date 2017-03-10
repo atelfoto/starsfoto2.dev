@@ -80,9 +80,7 @@ class Xml {
  * - `readFile` Set to false to disable file reading. This is important to disable when
  *   putting user data into Xml::build(). If enabled local & remote files will be read if they exist.
  *   Defaults to true for backwards compatibility reasons.
- * - `parseHuge` Enable the `LIBXML_PARSEHUGE`
- *
- * If using array as input, you can pass `options` from Xml::fromArray.
+ * - If using array as input, you can pass `options` from Xml::fromArray.
  *
  * @param string|array $input XML string, a path to a file, a URL or an array
  * @param array $options The options to use
@@ -96,8 +94,7 @@ class Xml {
 		$defaults = array(
 			'return' => 'simplexml',
 			'loadEntities' => false,
-			'readFile' => true,
-			'parseHuge' => true
+			'readFile' => true
 		);
 		$options += $defaults;
 
@@ -137,10 +134,6 @@ class Xml {
 		$internalErrors = libxml_use_internal_errors(true);
 		if ($hasDisable && !$options['loadEntities']) {
 			libxml_disable_entity_loader(true);
-		}
-		$flags = LIBXML_NOCDATA;
-		if (!empty($options['parseHuge'])) {
-			$flags |= LIBXML_PARSEHUGE;
 		}
 		try {
 			if ($options['return'] === 'simplexml' || $options['return'] === 'simplexmlelement') {
@@ -319,7 +312,7 @@ class Xml {
 				$childNS = $value['xmlns:'];
 				unset($value['xmlns:']);
 			}
-		} elseif (!empty($value) || $value === 0 || $value === '0') {
+		} elseif (!empty($value) || $value === 0) {
 			$childValue = (string)$value;
 		}
 

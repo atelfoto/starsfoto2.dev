@@ -17,7 +17,7 @@
  */
 
 /**
- * TestsAppsController
+ * Class TestsAppsController
  *
  * @package       Cake.Test.TestApp.Controller
  */

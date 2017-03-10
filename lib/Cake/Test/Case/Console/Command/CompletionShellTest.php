@@ -25,7 +25,7 @@ App::uses('Shell', 'Console');
 App::uses('CommandTask', 'Console/Command/Task');
 
 /**
- * TestCompletionStringOutput
+ * Class TestCompletionStringOutput
  *
  * @package       Cake.Test.Case.Console.Command
  */
@@ -40,7 +40,7 @@ class TestCompletionStringOutput extends ConsoleOutput {
 }
 
 /**
- * CompletionShellTest
+ * Class CompletionShellTest
  *
  * @package       Cake.Test.Case.Console.Command
  */

@@ -15,7 +15,7 @@
  */
 
 /**
- * TestPluginShell
+ * Class TestPluginShell
  * @package       Cake.Test.TestApp.Plugin.TestPlugin.Console.Command
  */
 class TestPluginShell extends Shell {

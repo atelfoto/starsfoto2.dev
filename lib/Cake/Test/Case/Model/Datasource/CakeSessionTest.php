@@ -21,7 +21,7 @@ App::uses('DatabaseSession', 'Model/Datasource/Session');
 App::uses('CacheSession', 'Model/Datasource/Session');
 
 /**
- * TestCakeSession
+ * Class TestCakeSession
  *
  * @package       Cake.Test.Case.Model.Datasource
  */
@@ -38,7 +38,7 @@ class TestCakeSession extends CakeSession {
 }
 
 /**
- * TestCacheSession
+ * Class TestCacheSession
  *
  * @package       Cake.Test.Case.Model.Datasource
  */
@@ -51,7 +51,7 @@ class TestCacheSession extends CacheSession {
 }
 
 /**
- * TestDatabaseSession
+ * Class TestDatabaseSession
  *
  * @package       Cake.Test.Case.Model.Datasource
  */
@@ -307,9 +307,9 @@ class CakeSessionTest extends CakeTestCase {
  * @return void
  */
 	public function testWriteEmptyKey() {
-		$this->assertTrue(TestCakeSession::write('', 'graham'));
-		$this->assertTrue(TestCakeSession::write('', ''));
-		$this->assertTrue(TestCakeSession::write(''));
+		$this->assertFalse(TestCakeSession::write('', 'graham'));
+		$this->assertFalse(TestCakeSession::write('', ''));
+		$this->assertFalse(TestCakeSession::write(''));
 	}
 
 /**
@@ -401,17 +401,6 @@ class CakeSessionTest extends CakeTestCase {
 		$this->assertTrue(TestCakeSession::delete('Clearing'));
 		$this->assertFalse(TestCakeSession::check('Clearing.sale'));
 		$this->assertFalse(TestCakeSession::check('Clearing'));
-	}
-
-/**
- * test delete
- *
- * @return void
- */
-	public function testDeleteEmptyString() {
-		TestCakeSession::write('', 'empty string');
-		$this->assertTrue(TestCakeSession::delete(''));
-		$this->assertFalse(TestCakeSession::check(''));
 	}
 
 /**
@@ -511,10 +500,6 @@ class CakeSessionTest extends CakeTestCase {
  * @return void
  */
 	public function testReadingSavedEmpty() {
-		TestCakeSession::write('', 'empty string');
-		$this->assertTrue(TestCakeSession::check(''));
-		$this->assertEquals('empty string', TestCakeSession::read(''));
-
 		TestCakeSession::write('SessionTestCase', 0);
 		$this->assertEquals(0, TestCakeSession::read('SessionTestCase'));
 
@@ -526,23 +511,7 @@ class CakeSessionTest extends CakeTestCase {
 		$this->assertFalse(TestCakeSession::read('SessionTestCase'));
 
 		TestCakeSession::write('SessionTestCase', null);
-		$this->assertNull(TestCakeSession::read('SessionTestCase'));
-	}
-
-/**
- * Test te cacheLimiter settings.
- *
- * @return void
- */
-	public function testCacheLimiter() {
-		Configure::write('Session.cacheLimiter', 'public');
-		TestCakeSession::start();
-		$this->assertSame('public', session_cache_limiter());
-
-		Configure::write('Session.cacheLimiter', 'private');
-		TestCakeSession::destroy();
-		TestCakeSession::start();
-		$this->assertSame('private', session_cache_limiter());
+		$this->assertEquals(null, TestCakeSession::read('SessionTestCase'));
 	}
 
 /**

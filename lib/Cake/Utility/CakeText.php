@@ -27,7 +27,7 @@ class CakeText {
  * Generate a random UUID
  *
  * @see http://www.ietf.org/rfc/rfc4122.txt
- * @return string RFC 4122 UUID
+ * @return RFC 4122 UUID
  */
 	public static function uuid() {
 		$node = env('SERVER_ADDR');

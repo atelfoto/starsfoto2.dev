@@ -268,7 +268,6 @@ class UsersController extends AppController {
  * @return [type] [description]
  */
 	public function admin_add(){
-		$this->layout='admin';
 		if (!empty($this->request->data)) {
 			$this->User->create($this->request->data);
 			if($this->User->validates()){

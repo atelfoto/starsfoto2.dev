@@ -36,6 +36,16 @@ class SmtpTestTransport extends SmtpTransport {
 	}
 
 /**
+ * Helper to change the CakeEmail
+ *
+ * @param object $cakeEmail An email object.
+ * @return void
+ */
+	public function setCakeEmail($cakeEmail) {
+		$this->_cakeEmail = $cakeEmail;
+	}
+
+/**
  * Disabled the socket change
  *
  * @return void
@@ -338,7 +348,8 @@ class SmtpTransportTest extends CakeTestCase {
 		$this->socket->expects($this->at(13))->method('read')->will($this->returnValue(false));
 		$this->socket->expects($this->at(14))->method('read')->will($this->returnValue("250 OK\r\n"));
 
-		$this->SmtpTransport->sendRcpt($email);
+		$this->SmtpTransport->setCakeEmail($email);
+		$this->SmtpTransport->sendRcpt();
 	}
 
 /**
@@ -359,7 +370,8 @@ class SmtpTransportTest extends CakeTestCase {
 		$this->socket->expects($this->at(4))->method('read')->will($this->returnValue(false));
 		$this->socket->expects($this->at(5))->method('read')->will($this->returnValue("250 OK\r\n"));
 
-		$this->SmtpTransport->sendRcpt($email);
+		$this->SmtpTransport->setCakeEmail($email);
+		$this->SmtpTransport->sendRcpt();
 	}
 
 /**
@@ -404,7 +416,8 @@ class SmtpTransportTest extends CakeTestCase {
 		$this->socket->expects($this->at(4))->method('read')->will($this->returnValue(false));
 		$this->socket->expects($this->at(5))->method('read')->will($this->returnValue("250 OK\r\n"));
 
-		$this->SmtpTransport->sendData($email);
+		$this->SmtpTransport->setCakeEmail($email);
+		$this->SmtpTransport->sendData();
 	}
 
 /**
@@ -485,7 +498,8 @@ class SmtpTransportTest extends CakeTestCase {
 		$this->socket->expects($this->at(4))->method('read')->will($this->returnValue(false));
 		$this->socket->expects($this->at(5))->method('read')->will($this->returnValue("250 OK\r\n"));
 
-		$this->SmtpTransport->sendRcpt($email);
+		$this->SmtpTransport->setCakeEmail($email);
+		$this->SmtpTransport->sendRcpt();
 
 		$expected = array(
 			array('code' => '250', 'message' => 'OK'),
